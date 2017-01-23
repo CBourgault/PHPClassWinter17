@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title> Corporations </title>
+        <title> All Corporations </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
         <?php
@@ -15,7 +16,7 @@
 
         <h1><a href="add.php?id=<?php echo $row['id']; ?>">Add Corporation</a></h1>
         
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -46,7 +47,7 @@
                     <td><?php echo $row['corp']; ?></td>           
                     <td><a href="update.php?id=<?php echo $row['id']; ?>">Update</a></td>            
                     <td><a href="Delete.php?id=<?php echo $row['id']; ?>">Delete</a></td>            
-                    <td><a href="read-one.php?id=<?php echo $row['id']; ?>">Read</a></td>            
+                    <td><a href="read.php?id=<?php echo $row['id']; ?>">Read</a></td>            
                 </tr>
             <?php endforeach; ?>
         </table>

@@ -9,7 +9,7 @@ function isPostRequest() {
     return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
 }
 
-function deleteFromTest( $id )
+function deleteFromCorps( $id )
 {
     $isDeleted = false;
     
@@ -46,7 +46,7 @@ function viewOneFromCorps( $id )
     
     $stmt = $db->prepare("SELECT * FROM corps where id = :id");
     
-    $binds = array ( "id" => $id );
+    $binds = array ( "id" => $id);
     
     $results = array();
     

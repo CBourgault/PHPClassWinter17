@@ -3,8 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>Update Corporation</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
+        
+        <h1><a href="view-action.php?id=<?php echo $row['id']; ?>">Home Page</a></h1>
+        
         <?php
         
             include './dbconnect.php';
@@ -56,26 +60,48 @@
         
         <h1><?php echo $result; ?></h1>
         
-        <form method="post" action="#">            
-            Corporation Name: <input type="text" value="<?php echo $corp; ?>" name="corp" />
-            <br />
-            Incorporated Date: <?php echo $incorp_dt; ?>
-            <br />  
-            Email Address: <input type="text" value="<?php echo $email; ?>" name="email" />
-            <br />
-            Zip Code: <input type="text" value="<?php echo $zipcode; ?>" name="zipcode" />
-            <br />  
-            Owner: <input type="text" value="<?php echo $owner; ?>" name="owner" />
-            <br />
-            Phone Number: <input type="text" value="<?php echo $phone; ?>" name="phone" />
-            <br />  
+        <form class="form-inline" method="post" action="#">   
+            <div class="form-group">
+                <label for="corp"> Corporation</label>
+            <input type="text" class ="form-control" value="<?php echo $corp; ?>" name="corp" />
+            </div>
+            <br>
             
+            <div class="form-group">
+                <label for="incorp_dt"> Incorporated Date </label> 
+            <input class="form-control" value="<?php echo $incorp_dt; ?>" name="incorp_dt" />
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="email"> Email Address</label>
+            <input type="text" class ="form-control" value="<?php echo $email; ?>" name="email" />
+            </div>
+            <br>
+           
+            <div class="form-group">
+                <label for="zipcode"> Zip Code</label>
+            <input type="text" class ="form-control" value="<?php echo $zipcode; ?>" name="zipcode" />
+            </div>
+            <br>
+                       
+            <div class="form-group">
+                <label for="owner"> Owner</label>
+            <input type="text" class ="form-control" value="<?php echo $owner; ?>" name="owner" />
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="phone"> Phone Number</label>
+            <input type="text" class ="form-control" value="<?php echo $phone; ?>" name="phone" />
+            </div>
+            <br>
+            
+            </div>
             <input type="hidden" value="<?php echo $id; ?>" name="id" /> 
             <input type="hidden" value="<?php echo $incorp_dt; ?>" name="incorp_dt" /> 
-            <input type="submit" value="Update" />
+            <button type="submit" class="btn btn-default"> Update </button>
         </form>
-        
-        <p> <a href="view-action.php">View page</a></p>
-        
+              
     </body>
 </html>
