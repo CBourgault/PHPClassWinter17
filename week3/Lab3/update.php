@@ -4,12 +4,13 @@
         <meta charset="UTF-8">
         <title>Update Corporation</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    </head>
+        
+    </head>    
     <body>
         
         <h1><a href="view-action.php?id=<?php echo $row['id']; ?>">Home Page</a></h1>
         
-        <?php
+        <?php      
         
             include './dbconnect.php';
             include './functions.php';
@@ -37,6 +38,7 @@
                 {
                     $result = 'Record NOT updated';
                 }
+                // Tells the user whether record was updated or not
                 
             } else {
                 // Show whats in database already if id is found
@@ -65,13 +67,7 @@
                 <label for="corp"> Corporation</label>
             <input type="text" class ="form-control" value="<?php echo $corp; ?>" name="corp" />
             </div>
-            <br>
-            
-            <div class="form-group">
-                <label for="incorp_dt"> Incorporated Date </label> 
-            <input class="form-control" value="<?php echo $incorp_dt; ?>" name="incorp_dt" />
-            </div>
-            <br>
+            <br>           
             
             <div class="form-group">
                 <label for="email"> Email Address</label>
@@ -93,14 +89,19 @@
             
             <div class="form-group">
                 <label for="phone"> Phone Number</label>
-            <input type="text" class ="form-control" value="<?php echo $phone; ?>" name="phone" />
+            <input type="text" class ="form-control" value="<?php echo $phone;
+            
+            // Bootstrap form used to add organization and visual appeal
+            
+            ?>" name="phone" />
             </div>
             <br>
+            
             
             </div>
             <input type="hidden" value="<?php echo $id; ?>" name="id" /> 
             <input type="hidden" value="<?php echo $incorp_dt; ?>" name="incorp_dt" /> 
-            <button type="submit" class="btn btn-default"> Update </button>
+            <button type="submit" class="btn btn-primary"> Update </button>
         </form>
               
     </body>

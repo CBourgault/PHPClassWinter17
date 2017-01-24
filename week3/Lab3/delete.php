@@ -18,11 +18,13 @@ and open the template in the editor.
             include './dbconnect.php';
             include './functions.php';
 
+                // Pulls ID and deletes it from Table
             $id = filter_input(INPUT_GET, 'id');
             $isDeleted = deleteFromCorps($id);
-            
+                    // Displays whether ID was deleted
         ?>
             
+
             <h1> Record <?php echo $id; ?>
             <?php if ( !$isDeleted ): ?> 
             Not

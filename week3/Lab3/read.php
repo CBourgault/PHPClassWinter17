@@ -13,13 +13,16 @@ and open the template in the editor.
     <body>
         
         <h1><a href="view-action.php?id=">Home Page</a></h1>
+
         
         <?php
+                // Link to redirect to view-action page above
         include './dbconnect.php';
         include './functions.php';  
     
             $id = filter_input(INPUT_GET, 'id'); 
             $results = viewOneFromCorps($id);
+            // Pulls results array from Corps Table for specific Id
         ?>
         
         <table class ="table table-striped">
@@ -38,12 +41,14 @@ and open the template in the editor.
                 <tr>
                     <td><?php echo $results['id']; ?></td>
                     <td><?php echo $results['corp']; ?></td>    
-                    <td><?php echo  date("F j, Y, g:i a",strtotime($results['incorp_dt'])); ?></td>
+                    <td><?php echo  date("F d, Y",strtotime($results['incorp_dt'])); ?></td>                  
                     <td><?php echo $results['email']; ?></td>            
                     <td><?php echo $results['zipcode']; ?></td>            
                     <td><?php echo $results['owner']; ?></td>            
-                    <td><?php echo $results['phone']; ?></td>     
-                   
+                    <td><?php echo $results['phone'];
+                    // The data from the results array is displayed
+                    ?></td>     
+
                     <td><a href="update.php?id=<?php echo $results['id']; ?>">Update</a></td>            
                     <td><a href="delete.php?id=<?php echo $results['id']; ?>">Delete</a></td>                       
                 </tr>
