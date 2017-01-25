@@ -11,13 +11,15 @@
            include_once './functions/dbData.php';
             
            $results = getAllTestData();
-           $column = 'datatwo';           
+           $column = filter_input(INPUT_POST, 'column');          
+           $order = filter_input(INPUT_POST, 'order');
            $dataone = filter_input(INPUT_POST, 'dataone');
            $datatwo = filter_input(INPUT_POST, 'datatwo');
            $action = filter_input(INPUT_POST, 'action');
            
            
            if ( $action === 'Submit1' ) {  
+               $results = orderTest($column, $order);
            }
            
            if ( $action === 'Submit2' ) {
