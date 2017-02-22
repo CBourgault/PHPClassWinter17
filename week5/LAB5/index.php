@@ -41,6 +41,7 @@ and open the template in the editor.
 
                     if ($linkList === true) {
                         $result = 'Operation Success!';
+                        $displayResult = $site;
                     } else {
                         $errors[] = 'Operation Failure';
                     }
@@ -51,6 +52,7 @@ and open the template in the editor.
         ?>
         <?php if (isset($result)) : ?>
             <h2> <?php echo $result; ?></h2>
+            <h3> <?php echo "$displayResult has been added"; ?></h3>
         <?php endif; ?>
 
 
