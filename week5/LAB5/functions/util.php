@@ -81,3 +81,22 @@ function urlExists($site) {
     }
     return $results;
 }
+
+function viewOneFromSites( $site_id )
+{
+    $db = dbconnect();
+    
+    $stmt = $db->prepare("SELECT * FROM sites where site_id = :site_id");
+    
+    $binds = array ( "site_id" => $site_id);
+    
+    $results = array();
+    
+        if 
+            // function used to pull one particular record from table
+            ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+        }
+    return $results;
+}

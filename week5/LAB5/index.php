@@ -17,7 +17,7 @@ and open the template in the editor.
         $site = filter_input(INPUT_POST, 'site');
         $checkURL = urlExists($site);
         $errors = array();
-
+        
 
         if (isPostRequest()) {
 
@@ -36,12 +36,13 @@ and open the template in the editor.
                 if (!empty($html)) {
 
                     $sitelinks = getLinkMatches($html);
-                    $linkList = saveSiteData($site, $sitelinks);
-
+                    $linkList = saveSiteData($site, $sitelinks);                   
 
                     if ($linkList === true) {
                         $result = 'Operation Success!';
-                        $displayResult = $site;
+                        $displaySite = $site;
+                        //$linking = postSiteLinks($site_id, $postLinks);
+                        
                     } else {
                         $errors[] = 'Operation Failure';
                     }
@@ -52,27 +53,24 @@ and open the template in the editor.
         ?>
         <?php if (isset($result)) : ?>
             <h2> <?php echo $result; ?></h2>
-            <h3> <?php echo "$displayResult has been added"; ?></h3>
+            <h3> <?php echo "$displaySite has been added"; ?></h3>
+            <h4> <?php echo count($sitelinks); ?> Results found:</h4>
+                <ol>
+                <?php foreach ($sitelinks as $row): ?>           
+                   <?php echo "<li>".$row."</li>"; ?>
+                <?php endforeach; ?>
+                </ol> 
         <?php endif; ?>
 
-
-
-
-
+<?php include './header.html.php'; ?>
 <?php include './templates/error-messages.php'; ?>
 
         <form action='#' method="post">
 
-            Site: <input type ="text" name="site" value="<?php echo $site; ?>" />      
-            <br />
-            <input type ="submit" value="Submit" />
+            <h2> Site: <input type ="text" name="site" value="<?php echo $site; ?>" style="font-size:20px;"/>                 
+            <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; font-size: 14px; padding: 6px 20px;"/></h2>
 
         </form>
 
     </body>
 </html>
-
-
-//LOOKUP SIMILAR TO SELECT DROPDOWN
-//ADD SUCCESS MESSAGE
-
