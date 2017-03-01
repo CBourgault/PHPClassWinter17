@@ -55,13 +55,13 @@ function saveSiteData($site, $siteLinks) {
         $site_id = $db->lastInsertId();
 
         $stmt = $db->prepare('INSERT INTO sitelinks SET site_id = :site_id, link = :link');
-        
+
 
         foreach ($siteLinks as $link) {
             $binds = array("site_id" => $site_id, ":link" => $link);
             $stmt->execute($binds);
         }
-          $result = true;      
+        $result = true;
     }
     return $result;
 }
@@ -75,28 +75,26 @@ function urlExists($site) {
     $binds = array
         (
         ":site" => $site,
-    );    
+    );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         $results = true;
     }
     return $results;
 }
 
-function viewOneFromSites( $site_id )
-{
+function viewOneFromSites($site_id) {
     $db = dbconnect();
-    
+
     $stmt = $db->prepare("SELECT * FROM sites where site_id = :site_id");
-    
-    $binds = array ( "site_id" => $site_id);
-    
+
+    $binds = array("site_id" => $site_id);
+
     $results = array();
-    
-        if 
-            // function used to pull one particular record from table
-            ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            $results = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-        }
+
+    if
+    // function used to pull one particular record from table
+    ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     return $results;
 }

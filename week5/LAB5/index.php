@@ -7,17 +7,19 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>Add</title>
     </head>
-    <body>
+    <body background="images/triangular.png">
         <?php
         include './functions/dbconnect.php';
         include './functions/util.php';
+        include './header.html.php';
 
         $site = filter_input(INPUT_POST, 'site');
         $checkURL = urlExists($site);
         $errors = array();
-        
+
 
         if (isPostRequest()) {
 
@@ -36,13 +38,12 @@ and open the template in the editor.
                 if (!empty($html)) {
 
                     $sitelinks = getLinkMatches($html);
-                    $linkList = saveSiteData($site, $sitelinks);                   
+                    $linkList = saveSiteData($site, $sitelinks);
 
                     if ($linkList === true) {
                         $result = 'Operation Success!';
                         $displaySite = $site;
                         //$linking = postSiteLinks($site_id, $postLinks);
-                        
                     } else {
                         $errors[] = 'Operation Failure';
                     }
@@ -55,20 +56,20 @@ and open the template in the editor.
             <h2> <?php echo $result; ?></h2>
             <h3> <?php echo "$displaySite has been added"; ?></h3>
             <h4> <?php echo count($sitelinks); ?> Results found:</h4>
-                <ol>
+            <ol>
                 <?php foreach ($sitelinks as $row): ?>           
-                   <?php echo "<li>".$row."</li>"; ?>
+                    <?php echo "<li>" . $row . "</li>"; ?>
                 <?php endforeach; ?>
-                </ol> 
+            </ol> 
         <?php endif; ?>
 
-<?php include './header.html.php'; ?>
-<?php include './templates/error-messages.php'; ?>
 
-        <form action='#' method="post">
+        <?php include './templates/error-messages.php'; ?>
 
-            <h2> Site: <input type ="text" name="site" value="<?php echo $site; ?>" style="font-size:20px;"/>                 
-            <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; font-size: 14px; padding: 6px 20px;"/></h2>
+        <form action='#' method="post" style="padding-left: 10px">
+
+            <h3> Site: <input type ="text" name="site" value="<?php echo $site; ?>" style="font-size:20px;"/>                 
+                <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; font-size: 18px; padding: 6px 20px;"/></h3>
 
         </form>
 
