@@ -10,6 +10,7 @@ if ( $logout == 1 ) {
 
 if ( isset($_SESSION['userid']) &&
         $_SESSION['userid'] != 0 ) {
-   echo '<a href="?logout=1">Logout</a>'; 
+   echo '<a href="?logout=1">Logout</a>';   
 }
- //If session is set and set to true, show logout 
+
+?>

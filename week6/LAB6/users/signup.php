@@ -3,51 +3,48 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>Create Account</title>
     </head>
-    <body>
+    <body background="../access/uploads/subtle.png">
+        
         <?php
         session_start();
-        include './functions/dbconnect.php'; 
+        include './functions/dbconnect.php';
         include './functions/util.php';
         include './functions/users.php';
         $email = filter_input(INPUT_POST, 'email');
-        
-        if ( isPostRequest() ) {            
-            $password = filter_input(INPUT_POST, 'pass');
-            //Gets user input to variables via POST
-            //Validation!!!
-            
-            $userExist = userExist($email);
-            $errors = [];
-            
-            if ( $userExist ) {
-                $errors[] = 'Email Already Exists.';
+        $userExist = userExist($email);
+        $password = filter_input(INPUT_POST, 'pass');
+        $errors = array();
+
+        if (isPostRequest()) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = "Email Validation Error";
             }
-            if ( empty ($password)) {
+            if (empty($password)) {
                 $errors[] = 'Password cannot be empty';
             }
-            
-            //Sends to function
-            
-            if (count($errors) ===0 ){
-                $result = signup($email,$password);           
-            
-            if ( $result === true ) {
-                header('Location: login.php?email='.$email);
-            } else {
-                $errors[] = 'Could not sign up.';
-            }    
-        }
-    }
+            if ($userExist == true) {
+                $errors[] = 'Email Already Exists.';
+            }
 
-        
+            if (count($errors) === 0) {
+                $result = signup($email, $password);
+                if ($result === true) {
+                    header('Location: login.php?email=' . $email);
+                } else {
+                    $errors[] = 'Could not sign up.';
+                }
+            }
+        }
         ?>
         
-        <h1> Sign Up </h1>
-        
+        <h2><a href='../cart/main.php?'>View Store</a></h2>
+        <h1> Sign Up </h1>        
+
         <?php include './templates/error-messages.html.php'; ?>
         <?php include './templates/users-form.html.php'; ?>
-        
+
     </body>
 </html>

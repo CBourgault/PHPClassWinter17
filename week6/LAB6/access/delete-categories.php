@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <title>Delete Product</title>
+        <title>Delete Category</title>
     </head>
     <body background="../access/uploads/subtle.png">
         <?php
@@ -20,17 +20,17 @@ and open the template in the editor.
     if ( !isLoggedIn() ) {
         die('Access not allowed');
     }
-        
-        $product_id = filter_input(INPUT_GET, 'product_id');
-        $isDeleted = deleteProduct($product_id);              
+        $category_id = filter_input(INPUT_GET, 'category_id');
+        $isDeleted = deleteCategory($category_id);
         ?>
         
-        <h1><a href='view-all-products.php'>Products</a></h1>
+        <h1><a href='view-all-categories.php'>Categories</a></h1>
         
-        <h1> Record <?php echo $product_id; ?>
+        <h1> Record <?php echo $category_id; ?>
         <?php if ( !$isDeleted ): ?> 
         Not
         <?php endif; ?>
         Deleted</h1>
     </body>
 </html>
+
